@@ -5,21 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74e6607f1f.js" crossorigin="anonymous"></script>
     <script type="module" src="js/index.js"></script>
-    <title>WEATHER</title>
+    <title>Vädervrål | Idag</title>
     
 </head>
 <body>
     <header>
         <h1>Vädervrål</h1>
+        <i id="set-location" class="fa-solid fa-location-dot" style="color: #000000; font-size: 22px;"></i>
     </header>
     
     <main>
+        <div id="chose-location">
+            <div id="header-chose-location">
+                <p>Välj stad</p>
+                <button>x</button>
+            </div>
+            <input type="text" id="location-input" placeholder="">
+        </div>
+
+        <div id="location">
+            <p>Stockholm</p>
+        </div>
+
         <div id="current">
             <b id="current-date">DATUM</b>
             <p id="current-time">Just nu</p>
-            <img src="img/day/113.png"></img>
-            <p>Temperatur</p>
+            <img id="weather-icon"></img>
+            <p id="weather-condition">Väderbeskrivning</p>
+            <p id="temperature">Temperatur</p>
+            <p id="feels-like">Temperatur</p>
         </div>
     </main>
 

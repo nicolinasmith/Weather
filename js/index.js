@@ -1,4 +1,4 @@
-import getWeather from './api.js';
+import { getWeather, getCity } from './api.js';
 
 const currentWeather = document.getElementById('current');
 const date = document.getElementById('current-date');
@@ -8,15 +8,19 @@ const weatherCondition = document.getElementById('weather-condition');
 const temperature = document.getElementById('temperature');
 const temperatureFeelsLike = document.getElementById('feels-like');
 
-const setLocation = document.getElementById('set-location');
+const setLocation = document.getElementById('location');
+const chosenLocation = document.getElementById('chosen-location');
 const choseLocation = document.getElementById('chose-location');
 const locationInput = document.getElementById('location-input');
+const locationSuggestions = document.getElementById('location-suggestions');
 const locationInputClose = document.querySelector('#header-chose-location button');
-//choseLocation.style.display = 'none';
+
+let city = 'Stockholm';
+chosenLocation.textContent = city;
 
 getCurrentDate();
 getCurrentTime();
-getCurrentWeather();
+getCurrentWeather(city);
 
 function getCurrentDate() {
 
@@ -38,15 +42,14 @@ function getCurrentTime() {
     time.textContent = hours + ':' + correctMinutes;
 }
 
-async function getCurrentWeather() {
+async function getCurrentWeather(city) {
 
-  const city = 'Stockholm';
-  const thisdata = await getWeather(city);
+  const weatherData = await getWeather(city);
 
-  weatherIcon.src = thisdata.current.condition.icon;
-  weatherCondition.textContent = thisdata.current.condition.text;
-  temperature.textContent = thisdata.current.temp_c + '°';
-  temperatureFeelsLike.textContent = 'Känns som ' + thisdata.current.feelslike_c + '°';
+  weatherIcon.src = weatherData.current.condition.icon;
+  weatherCondition.textContent = weatherData.current.condition.text;
+  temperature.textContent = weatherData.current.temp_c + '°';
+  temperatureFeelsLike.textContent = 'Känns som ' + weatherData.current.feelslike_c + '°';
 }
 
 setInterval(getCurrentTime, 1000);
@@ -54,30 +57,30 @@ setInterval(getCurrentTime, 1000);
 setLocation.addEventListener('click', () => {
     choseLocation.style.display = 'block';
     locationInput.focus();
+    locationInput.value = chosenLocation.textContent;
+ });
+
+locationInput.addEventListener('input', async () => {
+    const searchLocation = locationInput.value;
+    const searchSuggestions = await getCity(searchLocation);
+    console.log(searchSuggestions);
+
+    locationSuggestions.innerHTML = '';
+    searchSuggestions.forEach(suggestion => {
+      const suggestionElement = document.createElement('p');
+      suggestionElement.textContent = `${suggestion.name} (${suggestion.adminName1})`;
+      suggestionElement.classList.add('suggestion-style');
+      locationSuggestions.appendChild(suggestionElement);
+
+      suggestionElement.addEventListener('click', () => {
+        chosenLocation.textContent = suggestion.name;
+        choseLocation.style.display = 'none';
+        locationInput.value = '';
+        getCurrentWeather(suggestion.name);
+      });
+    });
  });
 
 locationInputClose.addEventListener('click', () => {
     choseLocation.style.display = 'none';
  });
-
-
-
-/*
-
-getCity();
-
-function getCity () {
-
-    //http://api.geonames.org/postalCodeSearch?15132=9011&maxRows=10&username=weatherroar
-    //http://www.geonames.org/export/web-services.html#search
-    const url = 'https://api.geonames.org/searchJSON?q=stockholm&maxRows=10&username=demo&style=full';
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log('Error fetching weather data:', error);
-    });
-}
-*/

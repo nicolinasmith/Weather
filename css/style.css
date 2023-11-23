@@ -87,7 +87,12 @@ main {
     width: 100%;
 }
 
-.suggestion-style, #header-chose-location i {
+.suggestion-style {
+    margin: 3px;
+}
+
+#chose-location i {
+    display: none;
     margin: 3px;
 }
 
@@ -158,11 +163,12 @@ main {
 
 #current-forecast {
     margin-top: 30px;
+    text-align: center;
 }
 
 .forecast {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     margin: 10px;
     padding: 10px;
@@ -170,6 +176,30 @@ main {
     background-color: #ffffff;
     border-radius: 15px;
     font-size: 12px;
+    text-align: left;
+}
+
+.forecast p {
+    margin: 5px;
+    font-size: 16px;
+}
+
+.forecast b {
+    font-size: 14px;
+}
+
+.forecast-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.forecast-content img {
+    margin-right: 15px;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
 }
 
 footer {

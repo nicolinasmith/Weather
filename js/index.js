@@ -14,6 +14,7 @@ const cloud = document.getElementById('cloud-value');
 const setLocation = document.getElementById('location');
 const chosenLocation = document.getElementById('chosen-location');
 const choseLocation = document.getElementById('chose-location');
+const locationText = document.querySelector('#chose-location i');
 const locationInput = document.getElementById('location-input');
 const locationSuggestions = document.getElementById('location-suggestions');
 const locationInputClose = document.querySelector('#header-chose-location button');
@@ -29,6 +30,23 @@ const forecastCondition2 = document.getElementById('condition-2');
 const forecastCondition3 = document.getElementById('condition-3');
 const forecastCondition4 = document.getElementById('condition-4');
 const forecastCondition5 = document.getElementById('condition-5');
+
+const forecastIcon1 = document.getElementById('forecast-icon-1');
+const forecastIcon2 = document.getElementById('forecast-icon-2');
+const forecastIcon3 = document.getElementById('forecast-icon-3');
+const forecastIcon4 = document.getElementById('forecast-icon-4');
+const forecastIcon5 = document.getElementById('forecast-icon-5');
+
+const forecastDay1 = document.querySelector('#forecast-day-1 b');
+const forecastDay2 = document.querySelector('#forecast-day-2 b');
+const forecastDay3 = document.querySelector('#forecast-day-3 b');
+const forecastDay4 = document.querySelector('#forecast-day-4 b');
+const forecastDay5 = document.querySelector('#forecast-day-5 b');
+
+const months = [
+  'januari', 'februari', 'mars', 'april', 'maj', 'juni',
+  'juli', 'augusti', 'september', 'oktober', 'november', 'december'
+];
 
 let city = {
   name: 'Stockholm',
@@ -46,10 +64,6 @@ function getCurrentDate() {
 
     const now = new Date();
     const month = now.getMonth();
-    const months = [
-        'januari', 'februari', 'mars', 'april', 'maj', 'juni',
-        'juli', 'augusti', 'september', 'oktober', 'november', 'december'
-      ];
 
     date.textContent = 'Idag' + ' ' + now.getDate() + ' ' + months[month];
 }
@@ -91,9 +105,29 @@ function displayForecastWeather(forecastData) {
   forecastCondition4.textContent = forecastData.forecastday[4].day.condition.text;
   forecastCondition5.textContent = forecastData.forecastday[5].day.condition.text;
 
+  forecastIcon1.src = forecastData.forecastday[1].day.condition.icon;
+  forecastIcon2.src = forecastData.forecastday[2].day.condition.icon;
+  forecastIcon3.src = forecastData.forecastday[3].day.condition.icon;
+  forecastIcon4.src = forecastData.forecastday[4].day.condition.icon;
+  forecastIcon5.src = forecastData.forecastday[5].day.condition.icon;
+
+  forecastDay1.textContent = createCorrectDate(forecastData.forecastday[1].date);
+  forecastDay2.textContent = createCorrectDate(forecastData.forecastday[2].date);
+  forecastDay3.textContent = createCorrectDate(forecastData.forecastday[3].date);
+  forecastDay4.textContent = createCorrectDate(forecastData.forecastday[4].date);
+  forecastDay5.textContent = createCorrectDate(forecastData.forecastday[5].date);
 }
 
-setInterval(getCurrentTime, 1000);
+function createCorrectDate(date) {
+  const day = date.slice(8, 10);
+  const month = date.slice(5, 7);
+
+  const correctDate = day + ' ' + months[month-1];
+  return correctDate;
+}
+
+
+setInterval(getCurrentTime, 3000);
 
 setLocation.addEventListener('click', () => {
     choseLocation.style.display = 'block';
@@ -102,6 +136,7 @@ setLocation.addEventListener('click', () => {
  });
 
 locationInput.addEventListener('input', async () => {
+    locationText.style.display = 'block';
     const searchLocation = locationInput.value;
     const searchSuggestions = await getCity(searchLocation);
 

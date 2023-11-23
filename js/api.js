@@ -3,7 +3,7 @@ const apiKey = '38682be1c057499f9b5180152232211';
 const username = 'weatherroar';
 
 async function getWeather(city) {
-  const cityUrl = `${baseUrl}/current.json?key=${apiKey}&q=${city}`;
+  const cityUrl = `${baseUrl}/current.json?key=${apiKey}&q=${city}&lang=sv`;
   try {
     const response = await fetch(cityUrl);
 
@@ -50,4 +50,4 @@ async function getCity (searchString) {
   }
 }
 
-export { getWeather, getCity };
+export { getWeather, getCity }; 

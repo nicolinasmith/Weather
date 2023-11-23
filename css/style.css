@@ -77,6 +77,8 @@ main {
     margin: 5px;
     border: none;
     border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 
 #chose-location input {
@@ -86,13 +88,15 @@ main {
     width: 100%;
 }
 
-.suggestion-style, #chose-location i {
+.suggestion-style, #header-chose-location i {
     margin: 3px;
 }
 
-.suggestion-style:hover {
-    cursor: pointer;
-    background-color: #ffffff;
+.suggestion-style {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.685);
+    font-size: 14px;
 }
 
 #current {
@@ -120,6 +124,25 @@ main {
     font-size: 30px;
 }
 
+footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    font-size: 14px;
+    border-top: 1px solid rgba(0, 0, 0, 0.336);
+    background-color: rgba(133, 133, 155, 0.445);
+    padding: 5px;
+}
+
+#footer-list, #footer-content p {
+    list-style-type: none;
+    margin: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+}
 
 /*DATOR*/
 
@@ -131,4 +154,14 @@ main {
 #header-chose-location button:hover {
     cursor: pointer;
     color: #ffffff;
+}
+
+li a:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.suggestion-style:hover {
+    cursor: pointer;
+    border: 1px solid #0000008f;
 }

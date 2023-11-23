@@ -63,8 +63,7 @@ setLocation.addEventListener('click', () => {
 locationInput.addEventListener('input', async () => {
     const searchLocation = locationInput.value;
     const searchSuggestions = await getCity(searchLocation);
-    console.log(searchSuggestions);
-
+    
     locationSuggestions.innerHTML = '';
     searchSuggestions.forEach(suggestion => {
       const suggestionElement = document.createElement('p');

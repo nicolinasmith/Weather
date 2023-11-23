@@ -7,6 +7,9 @@ const weatherIcon = document.getElementById('weather-icon');
 const weatherCondition = document.getElementById('weather-condition');
 const temperature = document.getElementById('temperature');
 const temperatureFeelsLike = document.getElementById('feels-like');
+const humidity = document.getElementById('humidity-value');
+const wind = document.getElementById('wind-value');
+const cloud = document.getElementById('cloud-value');
 
 const setLocation = document.getElementById('location');
 const chosenLocation = document.getElementById('chosen-location');
@@ -45,11 +48,16 @@ function getCurrentTime() {
 async function getCurrentWeather(city) {
 
   const weatherData = await getWeather(city);
+  console.log(weatherData);
 
   weatherIcon.src = weatherData.current.condition.icon;
   weatherCondition.textContent = weatherData.current.condition.text;
   temperature.textContent = weatherData.current.temp_c + '°';
   temperatureFeelsLike.textContent = 'Känns som ' + weatherData.current.feelslike_c + '°';
+
+  humidity.textContent = weatherData.current.humidity + '%';
+  wind.textContent = Math.round(weatherData.current.wind_kph) + ' km/h';
+  cloud.textContent = weatherData.current.cloud + '%';
 }
 
 setInterval(getCurrentTime, 1000);
@@ -63,7 +71,7 @@ setLocation.addEventListener('click', () => {
 locationInput.addEventListener('input', async () => {
     const searchLocation = locationInput.value;
     const searchSuggestions = await getCity(searchLocation);
-    
+
     locationSuggestions.innerHTML = '';
     searchSuggestions.forEach(suggestion => {
       const suggestionElement = document.createElement('p');

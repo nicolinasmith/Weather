@@ -119,15 +119,28 @@ main {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 55px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-top: 10px;
+    font-size: 12px;
+}
+
+#current-extra p {
+    text-align: center;
 }
 
 .separator {
     border: 1px solid rgba(0, 0, 0, 0.336);
-    height: 50px;
+    height: 55px;
+}
+
+#wind, #humidity, #cloud {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    height: 65px;
 }
   
 

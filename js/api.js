@@ -3,7 +3,8 @@ const apiKey = '38682be1c057499f9b5180152232211';
 const username = 'weatherroar';
 
 async function getWeather(city) {
-  const cityUrl = `${baseUrl}/current.json?key=${apiKey}&q=${city}&lang=sv`;
+
+  const cityUrl = `${baseUrl}/forecast.json?key=${apiKey}&q=${city.latitude},${city.longitude}&lang=sv&days=6`;
   try {
     const response = await fetch(cityUrl);
 
@@ -11,6 +12,7 @@ async function getWeather(city) {
       throw new Error(`Something went wrong. Error status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error('Error:', error);
@@ -31,7 +33,9 @@ async function getCity (searchString) {
     const uniqueCities = new Set();
     const cityObjects = data.geonames.map(city => ({
       name: city.name,
-      adminName1: city.adminName1
+      adminName1: city.adminName1,
+      longitude: city.lng,
+      latitude: city.lat
     })).filter(city => {
       if (uniqueCities.has(city.name)) {
         return false;

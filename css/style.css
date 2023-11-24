@@ -10,6 +10,8 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: center;
     margin-bottom: 20px;
     padding: 5px;
     width: 100%;
@@ -24,6 +26,11 @@ header h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     font-size: 24px;
     text-align: center;
+}
+
+header i {
+    font-size: 20¨¨18px;
+    margin: 5px;
 }
 
 main {
@@ -222,24 +229,38 @@ li a {
     color: black;
 }
 
-/*DATOR*/
-
-#location:hover {
-    cursor: pointer;
-    color: #ffffff;
+#about-us, #contact-us {
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
 }
 
-#header-chose-location button:hover {
-    cursor: pointer;
-    color: #ffffff;
+#about-us h3, #contact-us h3 {
+    margin-bottom: 7px;
 }
 
-li a:hover {
-    color: #ffffff;
-    cursor: pointer;
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 8px;
 }
 
-.suggestion-style:hover {
-    cursor: pointer;
-    border: 1px solid #0000008f;
+#contact-form input, #contact-form textarea {
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#contact-form button {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(247, 222, 183);
+    margin-top: 15px;
 }

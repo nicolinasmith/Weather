@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74e6607f1f.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/common.js"></script>
+    <title>Vädervrål</title>
+    
+</head>
+<body>
+    <header>
+        <h1 id="header-text">VÄDERVRÅL</h1>
+    </header>
+    
+    <main>
+        <div id="about-us">
+            <h3>Om oss</h3>
+            <p>Vädervrål är en applikation som visar dig vädret i Sverige. 
+            Den är utvecklad med hjälp av WeatherApi och GeoNamnes.</p>
+        </div>
+        <div id="contact-us">
+            <h3>Kontakta oss</h3>
+            <p>Fyll i frågeformuläret så återkommer vi till dig inom kort.</p>
+            <form action="contact.php" method="post" id="contact-form">
+                <label for="name">Namn</label>
+                <input type="text" id="name" name="name" placeholder="Ditt namn">
+                <label for="email">E-post</label>
+                <input type="text" id="email" name="email " placeholder="Din e-post">
+                <label for="subject">Meddelande</label>
+                <input id="subject" name="subject" placeholder="">
+                <button type="submit" value="Submit">Skicka</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <ul id="footer-list">
+                <li><a href="about.html" title="">Om oss</a></li>
+                <li><a href="https://www.weatherapi.com/" title="Free Weather API">WeatherApi</a></li>
+                <li><a href="http://www.geonames.org/" title="Free Geolocation API">GeoNames</a></li>
+            </ul>
+            <p>© 2023 Vädervrål</p>
+        </div>
+    </footer>
+</body>
+</html>

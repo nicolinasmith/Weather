@@ -309,20 +309,20 @@ li a {
 #forecast-days {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
     margin-top: 10px;
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
 }
 
-#forecast-days div {
-    margin: 2px;
+#forecast-days div:not(.separator-small) {
+    padding: 5px;
+    width: 100%;
+    text-align: center;
 }
 
 .selected-day {
     background-color: #f6ba37;
     padding: 5px;
     font-weight: bold;
-    border-radius: 5px;
 }

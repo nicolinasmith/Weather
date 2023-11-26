@@ -143,6 +143,11 @@ main {
     border: 1px solid rgba(0, 0, 0, 0.336);
     height: 55px;
 }
+.separator-small {
+    border: 1px solid rgba(0, 0, 0, 0.336);
+    height: 25px;
+    margin: 0;
+}
 
 #wind, #humidity, #cloud {
     display: flex;
@@ -299,4 +304,25 @@ li a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     margin-bottom: 10px;
+}
+
+#forecast-days {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+#forecast-days div {
+    margin: 2px;
+}
+
+.selected-day {
+    background-color: #f6ba37;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
 }

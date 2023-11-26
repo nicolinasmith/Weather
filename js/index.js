@@ -42,22 +42,43 @@ const forecastDay3 = document.querySelector('#forecast-day-3 b');
 const forecastDay4 = document.querySelector('#forecast-day-4 b');
 const forecastDay5 = document.querySelector('#forecast-day-5 b');
 
+const currentElement = document.getElementById('current');
+const forecastElements = document.querySelectorAll('.forecast');
+
+function getChosenCity() {
+  const chosenCity = {
+      name: localStorage.getItem('chosenCityName') || 'Stockholm',
+      longitude: localStorage.getItem('chosenCityLongitude') || 18.0686,
+      latitude: localStorage.getItem('chosenCityLatitude') || 59.3293
+  };
+  return chosenCity;
+}
+
+let chosenCity = getChosenCity();
+chosenLocation.textContent = chosenCity.name;
+
+forecastElements.forEach((forecast, index) => {
+    forecast.addEventListener('click', function () {
+            const selectedDate = index + 1;
+            localStorage.setItem('selectedDate', selectedDate);
+            window.location.href = 'forecast.html';
+    });
+});
+
+currentElement.addEventListener('click', function () {
+    const selectedDate = 0;
+    localStorage.setItem('selectedDate', selectedDate);
+    window.location.href = 'forecast.html';
+});
+
 const months = [
   'januari', 'februari', 'mars', 'april', 'maj', 'juni',
   'juli', 'augusti', 'september', 'oktober', 'november', 'december'
 ];
 
-let city = {
-  name: 'Stockholm',
-  longitude: 18.0686,
-  latitude: 59.3293
-};
-
-chosenLocation.textContent = city.name;
-
 getCurrentDate();
 getCurrentTime();
-getCurrentWeather(city);
+getCurrentWeather(chosenCity);
 
 function getCurrentDate() {
 
@@ -125,7 +146,6 @@ function createCorrectDate(date) {
   return correctDate;
 }
 
-
 setInterval(getCurrentTime, 3000);
 
 setLocation.addEventListener('click', () => {
@@ -147,7 +167,11 @@ locationInput.addEventListener('input', async () => {
       locationSuggestions.appendChild(suggestionElement);
 
       suggestionElement.addEventListener('click', () => {
+        chosenCity = city;
         chosenLocation.textContent = city.name;
+        localStorage.setItem('chosenCityName', city.name);
+        localStorage.setItem('chosenCityLongitude', city.longitude);
+        localStorage.setItem('chosenCityLatitude', city.latitude);
         choseLocation.style.display = 'none';
         locationInput.value = '';
         getCurrentWeather(city);

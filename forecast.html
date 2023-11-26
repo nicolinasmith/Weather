@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74e6607f1f.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/forecast.js"></script>
+    <script type="module" src="js/common.js"></script>
+    <title>Vädervrål</title>
+    
+</head>
+<body>
+    <header id="header-forecast">
+        <i class="fa-solid fa-chevron-left" style="color: #000000;"></i>
+        <h1 class="header-text">VÄDERVRÅL</h1>
+    </header>
+
+    <main>
+        <h2 id="forecast-date">VÄDER DATUM</h2>
+
+        <div id="location">
+            <i id="set-location" class="fa-solid fa-location-dot" style="color: #000000; font-size: 16px;"></i>
+            <p id="chosen-location"></p>
+        </div>
+
+        <div id="chose-location">
+            <div id="header-chose-location">
+                <p>Välj stad i Sverige</p>
+                <button>x</button>
+            </div>
+            <input type="text" id="location-input" placeholder="">
+            <i>Söker du efter:</i>
+            <div id="location-suggestions"></div>
+        </div>
+
+        <div id="forecast-container"> </div>
+    </main>
+
+    <footer>
+        <div id="footer-content">
+            <ul id="footer-list">
+                <li><a href="about.html" title="">Om oss</a></li>
+            </ul>
+            <p>© 2023 Vädervrål</p>
+        </div>
+    </footer>
+</body>
+</html>

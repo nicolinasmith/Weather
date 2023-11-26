@@ -1,6 +1,5 @@
 import { getWeather, getCity } from './api.js';
 
-const currentWeather = document.getElementById('current');
 const date = document.getElementById('current-date');
 const time = document.getElementById('current-time');
 const weatherIcon = document.getElementById('weather-icon');

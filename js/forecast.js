@@ -1,6 +1,6 @@
 import { getWeather, getCity } from './api.js';
 
-const selectedDate = localStorage.getItem('selectedDate');
+let selectedDate = localStorage.getItem('selectedDate');
 let chosenCity = {
   name: localStorage.getItem('chosenCityName') || 'Stockholm',
   longitude: localStorage.getItem('chosenCityLongitude') || 18.0686,
@@ -75,6 +75,16 @@ function displayDayMeny(forecastDays) {
       if(index == selectedDate) {
         day.classList.add('selected-day');
       }
+
+      day.addEventListener('click', () => {
+        forecastMenu.forEach(day => {
+          day.classList.remove('selected-day');
+        });
+        day.classList.add('selected-day');
+        selectedDate = index;
+        forecastDate.textContent = createCorrectDate(forecastDays[index].date);
+      });
+
     });
 }
 

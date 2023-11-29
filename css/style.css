@@ -55,7 +55,7 @@ main {
 #chose-location {
     display: flex;
     flex-direction: column;
-    background-color: #d4e4f1;
+    background-color: #f6ba37;
     align-self: center;
     padding: 15px;
     z-index: 1;

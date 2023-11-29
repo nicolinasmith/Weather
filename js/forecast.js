@@ -43,13 +43,20 @@ locationInput.addEventListener('input', async () => {
       locationSuggestions.appendChild(suggestionElement);
 
       suggestionElement.addEventListener('click', () => {
-        chosenLocation.textContent = city.name;
+        chosenCity = {
+          name: city.name,
+          longitude: city.longitude,
+          latitude: city.latitude
+        }
+        chosenLocation.textContent = chosenCity.name;
         choseLocation.style.display = 'none';
         locationInput.value = '';
-        localStorage.setItem('chosenCityName', city.name);
-        localStorage.setItem('chosenCityLongitude', city.longitude);
-        localStorage.setItem('chosenCityLatitude', city.latitude);
-        getForecast(city);
+
+        localStorage.setItem('chosenCityName', chosenCity.name);
+        localStorage.setItem('chosenCityLongitude', chosenCity.longitude);
+        localStorage.setItem('chosenCityLatitude', chosenCity.latitude);
+
+        getForecast();
       });
     });
  });
@@ -58,11 +65,11 @@ locationInputClose.addEventListener('click', () => {
     choseLocation.style.display = 'none';
  });
 
- async function getForecast(city) {
-    const weatherData = await getWeather(city);
-    console.log(weatherData.forecast.forecastday);
+ async function getForecast() {
+  
+    const weatherData = await getWeather(chosenCity);
     displayDayMeny(weatherData.forecast.forecastday);
-    const forecastData = weatherData.forecast.forecastday[selectedDate];
+    const forecastData = weatherData.forecast.forecastday;
     displayForecast(forecastData);
 }
 
@@ -83,6 +90,7 @@ function displayDayMeny(forecastDays) {
         day.classList.add('selected-day');
         selectedDate = index;
         forecastDate.textContent = createCorrectDate(forecastDays[index].date);
+        getForecast();
       });
 
     });
@@ -106,19 +114,18 @@ function createCorrectDate(dateString) {
 
     const correctDate = weekday + ' ' + day + ' ' + months[month-1];
     return correctDate;
-
 }
 
 function displayForecast(forecastData) {
 
     forecastContainer.innerHTML = '';
     
-    forecastDate.textContent = createCorrectDate(forecastData.date);
+    forecastDate.textContent = createCorrectDate(forecastData[selectedDate].date);
 
     const currentTime = new Date().getHours();
 
     if (selectedDate == 0) {
-      forecastData.hour.forEach(hour => {
+      forecastData[selectedDate].hour.forEach(hour => {
           const forecastHour = parseInt(hour.time.slice(11, 13));
           if (forecastHour >= currentTime) {
               const hourElement = document.createElement('div');
@@ -137,7 +144,7 @@ function displayForecast(forecastData) {
       });
     } 
     else {
-      forecastData.hour.forEach(hour => {
+      forecastData[selectedDate].hour.forEach(hour => {
           const hourElement = document.createElement('div');
           const forecastHourText = document.createElement('b');
           const temperature = document.createElement('p');
